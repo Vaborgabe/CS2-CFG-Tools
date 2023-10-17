@@ -1,0 +1,34 @@
+{
+  "name": "cs2-cfg-tools",
+  "version": "1.0.0",
+  "description": "Toolkits for working with Counter Strike 2's CFG and VCFG Files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/Vaborgabe/CS2-CFG-Tools)"
+  },
+  "keywords": [
+    "CS2",
+    "CounterStrike",
+    "CounterStrike2",
+    "CSGO",
+    "VCFG",
+    "CSConfig",
+    "Counter Strike",
+    "Counter Strike 2",
+    "Counter Strike Global Offensive",
+    "Counter Strike 2 Global Offensive",
+    "CS:GO",
+    "CS:GO 2",
+    "CS:GO2",
+    "CS:GO CONFIG",
+    "CS:GO CFG",
+    "CS:GO CFG Tools",
+    "CS:GO CFG Tool"
+  ],
+  "author": "VaporGabe",
+  "license": "GPL-3.0-or-later"
+}
