@@ -3,7 +3,7 @@
 
 ---
 **Contents**
-- [[#Tasks]]
+- [Tasks](https://github.com/Vaborgabe/CS2-CFG-Tools#tasks)
 ---
 ## Tasks
 - [ ] VCFG
