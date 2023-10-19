@@ -1,5 +1,31 @@
 const fs = require('fs');
 
+// 888     888 88888888888 8888888 888      
+// 888     888     888       888   888      
+// 888     888     888       888   888      
+// 888     888     888       888   888      
+// 888     888     888       888   888      
+// 888     888     888       888   888      
+// Y88b. .d88P     888       888   888      
+//  "Y88888P"      888     8888888 88888888
+
+//this is just so I dont have to write a for loop every time I want to add tabs
+function tabulator(depth, val) {
+    let str = '';
+    for (let i = 0; i < depth; i++) {
+        str += '\t';
+    }
+    str += val;
+    return str;
+}
+
+// db    db  .o88b. d88888b  d888b    d88888b d888888b db      d88888b 
+// 88    88 d8P  Y8 88'     88' Y8b   88'       `88'   88      88'     
+// Y8    8P 8P      88ooo   88        88ooo      88    88      88ooooo 
+// `8b  d8' 8b      88~~~   88  ooo   88~~~      88    88      88~~~~~ 
+//  `8bd8'  Y8b  d8 88      88. ~8~   88        .88.   88booo. 88.     
+//    YP     `Y88P' YP       Y888P    YP      Y888888P Y88888P Y88888P
+
 async function readVCFG(path, callback) {
     //reads vcfg file
     const vcfg = fs.readFile(path, 'utf8', (err, data) => {
@@ -63,7 +89,39 @@ function parseVCFG(array) {
     return parsedOBJ;
 }
 
+//Traverses vcfg object and builds string
+function vcfgWriteString(obj, depth) {
+    let str = '';
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            let value = obj[key];
+            if (typeof value === 'object') {
+                str += tabulator(depth, `\"${key}\"\n`);
+                str += tabulator(depth, `{\n`);
+                str += vcfgWriteString(value, depth + 1);
+                str += tabulator(depth, `}\n`);
+            } else {
+                str += tabulator(depth, `\"${key}\"\t\t\"${value}\"\n`);
+            }
+        }
+    }
+    return str;
+}
+//writes vcfg file
+function writeVCFG(path, obj) {
+    fs.writeFile(path, vcfgWriteString(obj, 0), (err) => {
+        if (err) throw err;
+        console.log('The file has been saved!');
+    });
+}
+function writeVCFGSync(path, obj) {
+    fs.writeFileSync(path, vcfgWriteString(obj, 0));
+}
+
 module.exports = {
     readVCFG,
-    readVCFGSync
+    readVCFGSync,
+    vcfgWriteString,
+    writeVCFG,
+    writeVCFGSync
 };

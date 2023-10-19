@@ -8,7 +8,7 @@
 ## Tasks
 - [ ] VCFG
 	- [x] Read VCFG files and convert them to JS objects
-	- [ ] Write Objects to VCFG files
+	- [x] Write Objects to VCFG files
 	- [ ] Create a more human understandable settings object
 	- [ ] Convert from VCFG to readable settings object
 	- [ ] Convert from readable settings object to VCFG object
