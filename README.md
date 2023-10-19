@@ -9,9 +9,34 @@
 - [ ] VCFG
 	- [x] Read VCFG files and convert them to JS objects
 	- [x] Write Objects to VCFG files
-	- [ ] Create a more human understandable settings object
-	- [ ] Convert from VCFG to readable settings object
-	- [ ] Convert from readable settings object to VCFG object
+	- [ ] VCFG Class
+		- [ ] Binds
+			- [ ] Add
+			- [ ] Set
+			- [ ] Remove
+		- [ ] analogbindings
+			- [ ] Add
+			- [ ] Set
+			- [ ] Remove
+		- [ ] Convars
+			- [ ] Add
+			- [ ] Set
+			- [ ] Remove
+		- [ ] Machine Convars
+			- [ ] Add
+			- [ ] Set
+			- [ ] Remove
+		- [ ] Sort
+		- [ ] Read
+			- [ ] All
+			- [ ] Bindings
+			- [ ] Convars
+			- [ ] MachineConvars
+		- [ ] Write
+			- [ ] All
+			- [ ] Bindings
+			- [ ] Convars
+			- [ ] MachineConvars
 - [ ] CFG
 	- [ ] Create command objects
 		- [ ] Base command object
@@ -28,3 +53,11 @@
 	- [ ] convert to vcfg
 	- [ ] read from cfg
 	- [ ] convert to cfg
+- [ ] Settings Object
+	- [ ] Create (Semi) Human Readable Settings Object
+	- [ ] Convert VCFG to settings
+	- [ ] Convert Settings to VCFG
+		- [ ] All
+		- [ ] Binds
+		- [ ] Convars
+		- [ ] Machine Convars
