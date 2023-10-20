@@ -163,12 +163,16 @@ class addBot extends command {
         //confirms difficulty argument is valid
         if(String(args[0]).toLowerCase() != 'easy' && String(args[0]).toLowerCase() != 'normal' && String(args[0]).toLowerCase() != 'hard') throw new commandSyntaxError('addBot requires a difficulty argument of either easy, normal, hard, or expert');
 
-        super('bot_add', side, ...args);
+        super('bot_add', String(side).toUpperCase(), String(args[0]).toLowerCase());
+
         this.side = String(side).toUpperCase();
         this.difficulty = String(args[0]).toLowerCase();
         this.botName;
         //sets name argument if it exists
-        if(args[1]) this.botName = args[1];
+        if(args[1]) {
+            this.botName = args[1];
+            this.setArg(2, args[1]);
+        }
     }
 
     setSide(side) {
