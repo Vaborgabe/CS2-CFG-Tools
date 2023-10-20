@@ -118,10 +118,83 @@ function writeVCFGSync(path, obj) {
     fs.writeFileSync(path, vcfgWriteString(obj, 0));
 }
 
+//creates command syntax exception
+class commandSyntaxError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'commandSyntaxError';
+    }
+}
+
+class command {
+
+    constructor(name, ...args) {
+        this.name = name;
+        this.args = args;
+    }
+
+    writeCFG() {
+        return `${this.name} ${this.args.join(' ')}`;
+    }
+
+    writeVCFG() {
+        return `${this.name}\t\t"${this.args.join(' ').replace("\"", "")}"`;
+    }
+
+    setArgs(...args) {
+        this.args = args;
+    }
+
+    setArg(index, arg) {
+        this.args[index] = arg;
+    }
+
+    getArg(index) {
+        return this.args[index];
+    }
+}
+
+class addBot extends command {
+    constructor(side, ...args) {
+        //confirms theres at least one argument
+        if(args.length < 1) throw new commandSyntaxError('addBot requires a difficulty argument of either easy, normal, hard, or expert');
+        //confirms side argument is valid
+        if(String(side).toUpperCase() != 'T' && String(side).toUpperCase() != 'CT') throw new commandSyntaxError('addBot requires a side argument of either T or CT');
+        //confirms difficulty argument is valid
+        if(String(args[0]).toLowerCase() != 'easy' && String(args[0]).toLowerCase() != 'normal' && String(args[0]).toLowerCase() != 'hard') throw new commandSyntaxError('addBot requires a difficulty argument of either easy, normal, hard, or expert');
+
+        super('bot_add', side, ...args);
+        this.side = String(side).toUpperCase();
+        this.difficulty = String(args[0]).toLowerCase();
+        this.botName;
+        //sets name argument if it exists
+        if(args[1]) this.botName = args[1];
+    }
+
+    setSide(side) {
+        if(String(side).toUpperCase() != 'T' && String(side).toUpperCase() != 'CT') throw new commandSyntaxError('addBot requires a side argument of either T or CT');
+        this.side = String(side).toUpperCase();
+        this.setArg(0, side);
+    }
+
+    setDifficulty(difficulty) {
+        if(String(difficulty).toLowerCase() != 'easy' && String(difficulty).toLowerCase() != 'normal' && String(difficulty).toLowerCase() != 'hard') throw new commandSyntaxError('addBot requires a difficulty argument of either easy, normal, hard, or expert');
+        this.difficulty = String(difficulty).toLowerCase();
+        this.setArg(1, difficulty);
+    }
+
+    setBotName(name) {
+        this.botName = name;
+        this.setArg(2, name);
+    }
+}
+
 module.exports = {
     readVCFG,
     readVCFGSync,
     vcfgWriteString,
     writeVCFG,
-    writeVCFGSync
+    writeVCFGSync,
+    command,
+    addBot,
 };
