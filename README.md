@@ -1,5 +1,6 @@
 # CS2 CFG Tools
 **Toolkits for working with Counter Strike 2's CFG and VCFG Files**
+**Docs available on [WIKI](https://github.com/Vaborgabe/CS2-CFG-Tools/wiki)**
 
 ---
 **Contents**
